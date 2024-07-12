@@ -1,6 +1,6 @@
 package ch.giuntini.netjlo_default.commections.server.multiple;
 
-import ch.giuntini.netjlo_base.connections.client.sockets.BaseSocket;
+import ch.giuntini.netjlo_core.connections.client.sockets.BaseSocket;
 import ch.giuntini.netjlo_default.commections.server.sockets.DefaultServerSocket;
 import ch.giuntini.netjlo_fos.connections.server.multiple.ActiveFileServerConnection;
 import ch.giuntini.netjlo_fos.connections.server.multiple.MultipleFileServerConnection;

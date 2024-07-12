@@ -1,12 +1,12 @@
 package ch.giuntini.netjlo_default.interpreter;
 
-import ch.giuntini.netjlo_base.packages.BasePackage;
-import ch.giuntini.netjlo_base.interpreter.Interpretable;
+import ch.giuntini.netjlo_core.interpreter.Interpretable;
+import ch.giuntini.netjlo_default.packages.DefaultPackage;
 
-public class DefaultInterpreter implements Interpretable<BasePackage> {
+public class DefaultInterpreter implements Interpretable<DefaultPackage> {
 
     @Override
-    public void interpret(BasePackage p) {
-        System.out.println(p.information);
+    public void interpret(DefaultPackage p) {
+        System.out.println(p.getInformation());
     }
 }

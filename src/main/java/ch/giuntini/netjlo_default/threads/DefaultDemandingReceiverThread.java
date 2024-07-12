@@ -1,17 +1,17 @@
 package ch.giuntini.netjlo_default.threads;
 
-import ch.giuntini.netjlo_base.connections.client.sockets.BaseSocket;
-import ch.giuntini.netjlo_base.packages.BasePackage;
-import ch.giuntini.netjlo_base.threads.ThreadCommons;
+import ch.giuntini.netjlo_core.connections.client.sockets.BaseSocket;
+import ch.giuntini.netjlo_core.threads.ThreadCommons;
 import ch.giuntini.netjlo_core.interpreter.Interpretable;
 import ch.giuntini.netjlo_default.commections.client.DefaultConnection;
+import ch.giuntini.netjlo_default.packages.DefaultPackage;
 
 import java.io.IOException;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class DefaultDemandingReceiverThread<I extends Interpretable<BasePackage>> extends DefaultReceiverThread<I> {
+public class DefaultDemandingReceiverThread<I extends Interpretable<DefaultPackage>> extends DefaultReceiverThread<I> {
 
-    private final ConcurrentLinkedQueue<BasePackage> packages;
+    private final ConcurrentLinkedQueue<DefaultPackage> packages;
     private final DefaultDemandingInterpreterThread<I> interpreterThread;
 
     public DefaultDemandingReceiverThread(DefaultConnection<I> connection, BaseSocket socket, Class<I> interpreterC) {
@@ -25,12 +25,13 @@ public class DefaultDemandingReceiverThread<I extends Interpretable<BasePackage>
         interpreterThread.start();
         while (!stop) {
             try {
-                BasePackage p = (BasePackage) objectInputStream.readObject();
+                DefaultPackage p = (DefaultPackage) objectInputStream.readObject();
                 packages.add(p);
-
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
                 break;
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
             Thread.onSpinWait();
         }

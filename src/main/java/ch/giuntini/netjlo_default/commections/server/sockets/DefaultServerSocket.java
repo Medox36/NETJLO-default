@@ -1,12 +1,12 @@
 package ch.giuntini.netjlo_default.commections.server.sockets;
 
-import ch.giuntini.netjlo_base.connections.client.sockets.BaseSocket;
-import ch.giuntini.netjlo_base.connections.server.sockets.CustomServerSocket;
+import ch.giuntini.netjlo_core.connections.client.sockets.BaseSocket;
+import ch.giuntini.netjlo_core.connections.server.sockets.BaseServerSocket;
 
 import java.io.IOException;
 import java.net.InetAddress;
 
-public class DefaultServerSocket extends CustomServerSocket<BaseSocket> {
+public class DefaultServerSocket extends BaseServerSocket<BaseSocket> {
 
     public DefaultServerSocket(int port) throws IOException {
         super(port, BaseSocket.class);
